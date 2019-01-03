@@ -147,6 +147,7 @@ class Emulator(object):
 
     # Steps the emulator along one time step
     def step(self, actions):
+    # Will need to shuffle this for self-play?, right
         data = self.dataPipe.read_data(timeout=10)  # gathers the frame data and memory address values
         action_string = actions_to_string(actions)
         self.actionPipe.writeln(action_string)  # sends the actions for the game to perform before the next step
