@@ -200,14 +200,19 @@ class Environment(object):
 
         data["rewards"] = rewards
         return data
-
+    
     # Steps the emulator along by the requested amount of frames required for the agent to provide actions
+    # Here add a parameter for P1 or P2
+    # So each of the fighter's models will train on the same code set, but p2 will be translated for their actual controls...
+    # Actually this would probably add another move action and attack action and simuimultaneously move the fighters....
+    # Hopefully simultaneously updating will not break anything...
     def step(self, move_action, attack_action):
         if self.started:
             if not self.round_done and not self.stage_done and not self.game_done:
                 actions = []
                 actions += index_to_move_action(move_action)
                 actions += index_to_attack_action(attack_action)
+                #will need to update this gather_frames func
                 data = self.gather_frames(actions)
                 data = self.check_done(data)
                 return data["frame"], data["rewards"], self.round_done, self.stage_done, self.game_done
