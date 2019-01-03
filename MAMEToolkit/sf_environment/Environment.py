@@ -24,6 +24,8 @@ def setup_memory_addresses():
     }
 
 
+#Make a couple more of these index to action methods for player 2?
+
 # Converts and index (action) into the relevant movement action Enum, depending on the player
 def index_to_move_action(action):
     return {
